@@ -5,6 +5,7 @@ orbs:
   # welcome: circleci/welcome-orb@0.4.1
   # aws-cli: circleci/aws-cli@2.0.3
 # Define the jobs we want to run for this project
+  aws-cli: circleci/aws-cli@2.0.3
 create_infrastructure: 
   docker:
     - image: amazon/aws-cli
@@ -14,7 +15,7 @@ create_infrastructure:
         name: Create Cloudformation Stack
         command: |
           aws cloudformation deploy \
-            --template-file file://template.yml \
+            --template-file template.yml \
             --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
             --region us-west-2
 workflows:
